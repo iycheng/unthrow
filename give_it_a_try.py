@@ -32,7 +32,6 @@ r.run_once(step, 2)
 import pickle
 print('dumps')
 x = pickle.dumps(r)
-print("x=", x)
 print("now wait")
 print(r.resume_params)
 ray.wait([r.resume_params])
@@ -45,3 +44,20 @@ def is_working(x):
     print('>>loaded')
     print(">>finally", rr.run_once(step, 2))
 is_working(x)
+
+"""
+start work
+prep to stop
+dumps
+now wait
+ObjectRef(c8ef45ccd0112571ffffffffffffffffffffffff0100000001000000)
+(work pid=6243) BEFORE SLEEP
+2
+rr= <unthrow.Resumer object at 0x7f0d4964dc10>
+>>loaded
+stop None
+resumed
+>>>>> ray.get() 2
+>>finally 2
+(work pid=6243) SLEEP DONE
+"""
